@@ -13,12 +13,11 @@
 | last_name_kane        | string  | null: false |
 | birth_date            | date    | null: false |
 
-
-
 ### Association
-
 - has_many :items
-- has_many :orders
+- has_many :purchases
+
+
 
 ## items テーブル
 
@@ -34,12 +33,22 @@
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
-
 ### Association
-
-- has_one :order
 - belongs_to :user
 - has_one :purchase
+
+
+
+## purchases テーブル
+| user                  | references | null: false, foreign_key: true |
+| item                  | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to user
+- belongs_to item
+- has_one :order
+
+
 
 ## orders テーブル
 
@@ -51,20 +60,7 @@
 | address               | string     | null: false                    |
 | building              | integer    |                                |
 | phone_number          | string     | null: false                    |
-
-
-### Association
-
-- belongs_to :user
-- belongs_to :order
-- has_one :purchase
-
-## purchase テーブル
-| user                  | references | null: false, foreign_key: true |
-| item                  | references | null: false, foreign_key: true |
-
-
+| purchase              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :order
-- belongs_to :item
+- belongs_to :purchase
