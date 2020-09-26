@@ -29,31 +29,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'categoryが空では登録できない' do
-      @item.category_id = nil
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category Select')
     end
 
     it 'statusが空では登録できない' do
-      @item.status_id = nil
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Status Select')
     end
 
     it 'shipping_feeが空では登録できない' do
-      @item.shipping_fee_id = nil
+      @item.shipping_fee_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping fee Select')
     end
 
     it 'prefectureが空では登録できない' do
-      @item.prefecture_id = nil
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Prefecture Select')
     end
 
     it 'scheduled_deliveryが空では登録できない' do
-      @item.scheduled_delivery_id = nil
+      @item.scheduled_delivery_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Scheduled delivery Select')
     end
