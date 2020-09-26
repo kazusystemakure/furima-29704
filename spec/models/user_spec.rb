@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー機能単体テスト' do
-    context '保存できる場合（正常系テスト）'
+    context 'データ保存成功'
 
     it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できること' do
       expect(@user).to be_valid
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    context '保存できない場合（異常系テスト）'
+    context 'データ保存失敗'
 
     it 'nicknameが空では登録できないこと' do
       @user.nickname = nil

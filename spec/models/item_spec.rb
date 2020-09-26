@@ -6,13 +6,13 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品テスト' do
-    context '保存できる場合（正常系テスト）'
+    context 'データ保存成功'
 
     it '全ての項目が存在すれば登録できること' do
       expect(@item).to be_valid
     end
 
-    context '保存できない場合（異常系テスト）'
+    context 'データ保存失敗'
 
     it 'imageが空では登録できないこと' do
       @item.image = nil
