@@ -1,14 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
+  before do
+    @item = FactoryBot.build(:item)
+  end
+
   describe '商品出品テスト' do
-    before do
-      @item = FactoryBot.build(:item)
-    end
+    context '保存できる場合（正常系テスト）'
 
     it '全ての項目が存在すれば登録できること' do
       expect(@item).to be_valid
     end
+
+    it 'priceが300円以上9999999円以下で登録できること' do
+      @item.price = 5000
+      expect(@item).to be_valid
+    end
+
+    context '保存できない場合（異常系テスト）'
 
     it 'imageが空では登録できないこと' do
       @item.image = nil
@@ -74,11 +83,6 @@ RSpec.describe Item, type: :model do
       @item.price = 10_000_000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price Out of setting range')
-    end
-
-    it 'priceが300円以上9999999円以下で登録できること' do
-      @item.price = 5000
-      expect(@item).to be_valid
     end
   end
 end
