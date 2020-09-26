@@ -18,12 +18,12 @@ class Item < ApplicationRecord
     validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number'}
   end
 
-  validates :price, numericality: {greter_than: 300, less_than: 10000000, message: 'Out of setting range'}
+  validates_inclusion_of  :price, in: 300..9_999_999, message: 'Out of setting range'
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :status_id, numericality: { other_than: 1 } 
-  validates :shipping_fee_id, numericality: { other_than: 1 } 
-  validates :prefecture_id, numericality: { other_than: 1 } 
-  validates :scheduled_delivery_id, numericality: { other_than: 1 }  
+  validates :category_id, numericality: { other_than: 1, message: 'Select' } 
+  validates :status_id, numericality: { other_than: 1, message: 'Select' } 
+  validates :shipping_fee_id, numericality: { other_than: 1, message: 'Select' } 
+  validates :prefecture_id, numericality: { other_than: 1, message: 'Select' } 
+  validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Select' }  
 
 end
