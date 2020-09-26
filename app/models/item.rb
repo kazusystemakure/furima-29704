@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
-  
   belongs_to :user
-  
+
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -15,15 +14,14 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :text
-    validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number'}
+    validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number' }
   end
 
   validates_inclusion_of  :price, in: 300..9_999_999, message: 'Out of setting range'
 
-  validates :category_id, numericality: { other_than: 1, message: 'Select' } 
-  validates :status_id, numericality: { other_than: 1, message: 'Select' } 
-  validates :shipping_fee_id, numericality: { other_than: 1, message: 'Select' } 
-  validates :prefecture_id, numericality: { other_than: 1, message: 'Select' } 
-  validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Select' }  
-
+  validates :category_id, numericality: { other_than: 1, message: 'Select' }
+  validates :status_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_fee_id, numericality: { other_than: 1, message: 'Select' }
+  validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
+  validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Select' }
 end

@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :items
 
-  NAME_REGEX = [/\A[ぁ-んァ-ン一-龥]/, /\A[ァ-ヶー－]+\z/]
+  NAME_REGEX = [/\A[ぁ-んァ-ン一-龥]/, /\A[ァ-ヶー－]+\z/].freeze
 
   with_options presence: true do
     validates :nickname

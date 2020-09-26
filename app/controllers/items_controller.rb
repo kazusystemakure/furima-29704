@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
   end
 
   def checked
-    
   end
 
   private
@@ -28,8 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to "http://localhost:3000/users/sign_in"
-    end
+    redirect_to 'http://localhost:3000/users/sign_in' unless user_signed_in?
   end
 end
