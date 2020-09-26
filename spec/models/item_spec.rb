@@ -12,10 +12,6 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
 
-    it 'priceが300円以上9999999円以下で登録できること' do
-      expect(@item).to be_valid
-    end
-
     context '保存できない場合（異常系テスト）'
 
     it 'imageが空では登録できないこと' do
