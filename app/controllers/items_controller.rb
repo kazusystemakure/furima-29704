@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
+    @items = Item.all.includes(:user).order(id: 'DESC')
   end
 
   def new
@@ -17,7 +18,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  def checked
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
