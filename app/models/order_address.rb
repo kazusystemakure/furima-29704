@@ -6,7 +6,7 @@ class OrderAddress
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "code Input correctly"}
     validates :city
     validates :address
-    validates :phone_number
+    validates :phone_number, format: {with: /\A\d{10,11}\z/, message:"is invalid"}
     validates :token
   end
   validates :prefecture, numericality: { other_than: 1, message: 'Select' }

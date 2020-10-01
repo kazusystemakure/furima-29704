@@ -1,18 +1,23 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, except: [:index]
+  
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
+    if current_user.id == @item.user_id
+      redirect_to new_user_session_path
+    else 
+    end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
       @order_address.save
       return redirect_to root_path
     else
-      # redirect_to item_orders_path
+      # redirect_to item_orders_pathでは、エラーは表示されない。
       render 'index'
     end
   end
@@ -31,6 +36,14 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end
