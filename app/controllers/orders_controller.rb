@@ -1,13 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, except: [:index]
-  
+
   def index
     @order_address = OrderAddress.new
-    if current_user.id == @item.user_id
-      redirect_to new_user_session_path
-    else 
-    end
+    redirect_to new_user_session_path if current_user.id == @item.user_id
   end
 
   def create
@@ -15,7 +12,7 @@ class OrdersController < ApplicationController
     if @order_address.valid?
       pay_item
       @order_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       # redirect_to item_orders_pathでは、エラーは表示されない。
       render 'index'
@@ -30,10 +27,10 @@ class OrdersController < ApplicationController
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: @item.price, # 商品の値段
+      card: order_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
@@ -45,5 +42,4 @@ class OrdersController < ApplicationController
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?
   end
-
 end
