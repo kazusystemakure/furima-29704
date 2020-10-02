@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :move_to_index, except: [:index]
 
   def index
-    return redirect_to root_path if current_user.id == set_item.user_id
+    return redirect_to root_path if current_user.id == set_item.user_id || @item.order != nil
     @order_address = OrderAddress.new
   end
 
