@@ -18,7 +18,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが空では登録できないこと' do
         @order_address.postal_code = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code can't be blank", 'Postal code Input correctly')
+        expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
       end
 
       it 'postal_codeがハイフンなしでは登録できないこと' do
