@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 
   def index
     @order_address = OrderAddress.new
-    redirect_to new_user_session_path if current_user.id == @item.user_id
   end
 
   def create
@@ -41,5 +40,6 @@ class OrdersController < ApplicationController
 
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?
+    redirect_to new_user_session_path if current_user.id == @item.user_id
   end
 end

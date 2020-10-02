@@ -8,9 +8,8 @@ class OrderAddress
     validates :address
     validates :token
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
+    validates :prefecture, numericality: { other_than: 1, message: 'Select' }
   end
-
-  validates :prefecture, numericality: { other_than: 1, message: 'Select' }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
