@@ -25,13 +25,13 @@
 | --------------------- | ---------- | ------------------------------ |
 | name                  | string     | null: false                    |
 | text                  | string     | null: false                    |
-| category              | integer    | null: false                    |
-| status                | integer    | null: false                    |
-| shipping_fee          | integer    | null: false                    |
-| prefecture            | integer    | null: false                    |
-| scheduled_delivery    | integer    | null: false                    |
+| category_id           | integer    | null: false                    |
+| status_id             | integer    | null: false                    |
+| shipping_fee_id       | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
+| scheduled_delivery_id | integer    | null: false                    |
 | price                 | integer    | null: false                    |
-| user                  | references | null: false, foreign_key: true |
+| user_id               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -39,9 +39,10 @@
 
 
 
-## purchases テーブル
-| user                  | references | null: false, foreign_key: true |
-| item                  | references | null: false, foreign_key: true |
+## orders テーブル
+
+| user_id             | references | null: false, foreign_key: true |
+| item_id             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to user
@@ -50,17 +51,17 @@
 
 
 
-## orders テーブル
+## address テーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| post_code             | string     | null: false                    |
+| postal_code             | string     | null: false                    |
 | prefecture            | integer    | null: false                    |
 | city                  | string     | null: false                    |
 | address               | string     | null: false                    |
 | building              | integer    |                                |
 | phone_number          | string     | null: false                    |
-| purchase              | references | null: false, foreign_key: true |
+| order_id              | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
